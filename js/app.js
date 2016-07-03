@@ -6,14 +6,16 @@ var Enemy = function() {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+    this.loc = loc;
 };
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function(dt) {
+Enemy.prototype.update = function(dt, loc) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    this.loc++;
 };
 
 // Draw the enemy on the screen, required method for game
