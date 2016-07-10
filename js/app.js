@@ -21,20 +21,20 @@ Enemy.prototype.move = function(){
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+//    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// CS - i think we need to use this somewhere but idk where
+// CS - i think i need to use this somewhere but idk where
 //     this.x = x;
 //     this.y = y;
 
-// Now write your own player class
+// Player class with image file path & location for when the game 1st opens
 var Player = function() {
     this.sprite = 'images/char-boy.png';
     //this.width = ;
     //this.height = ;
-    //this.x = ;
-    //this.y = ;
+    this.x = 200;
+    this.y = 400;
 };
 
 // This class requires an update(), render() and a handleInput() method.
@@ -43,11 +43,31 @@ Player.prototype.update = function(dt) {
 };
 
 Player.prototype.render = function() {
-
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-Player.prototype.handleInput = function() {
-
+Player.prototype.handleInput = function(keyPressed) {
+switch(keyPressed) {
+    case 'left':
+    console.log('left pressed!');
+    this.x += -100;
+    break;
+    case 'up':
+    console.log('up pressed!');
+    this.y += -90;
+    break;
+    case 'right':
+    console.log('right pressed!');
+    this.x += 100;
+    break;
+    case 'down':
+    console.log('down pressed!');
+    this.y += 90;
+    break;
+    default:
+    console.log('no key pressed!');
+    break;
+    }
 };
 
 // Now instantiate your objects.
