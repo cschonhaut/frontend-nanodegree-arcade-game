@@ -3,9 +3,9 @@ var Enemy = function(loc) {
     // Variables applied to each of our instances go here, we've provided one for you to get started
     // The image/sprite for our enemies, this uses a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-    var obj = Object.create(Enemy.prototype);
-    obj.loc = loc;
-    return obj;
+    //var obj = Object.create(Enemy.prototype);
+    //obj.loc = loc;
+    //return obj;
     this.x = 202;
     this.y = 230;
 };
@@ -53,7 +53,7 @@ Player.prototype.handleInput = function(keyPressed) {
 switch(keyPressed) {
     case 'left':
     console.log('left pressed!');
-    if (this.x<0){
+    if(this.x<=0){
         console.log("boundary reached");
         } else {
             this.x += -100;
@@ -62,16 +62,16 @@ switch(keyPressed) {
 
     case 'up':
     console.log('up pressed!');
-    if (this.y<0){
+    if (this.y<=-10){
         console.log("boundary reached");
         } else {
-            this.y += -90;
+            this.y += -82;
         }
     break;
 
     case 'right':
     console.log('right pressed!');
-    if (this.x>=505){
+    if (this.x>=400){
         console.log("boundary reached");
         } else {
             this.x += 100;
@@ -83,7 +83,7 @@ switch(keyPressed) {
     if (this.y>=400){
         console.log("boundary reached");
     } else {
-        this.y += 90;
+        this.y += 82;
     }
     break;
 
