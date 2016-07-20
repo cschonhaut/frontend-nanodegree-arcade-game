@@ -40,9 +40,11 @@ var Player = function() {
     this.y = 400;
 };
 
-// This class requires an update(), render() and a handleInput() method.
+// CS - If the player reaches the water, reset to grass
 Player.prototype.update = function(dt) {
-
+    if (this.y == -10){
+        this.y = 400
+    }
 };
 
 Player.prototype.render = function() {
@@ -91,6 +93,7 @@ switch(keyPressed) {
     console.log('no key pressed!');
     break;
     }
+    console.log (this.y);
 };
 
 // Now instantiate your objects.
