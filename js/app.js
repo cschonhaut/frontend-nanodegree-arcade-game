@@ -1,4 +1,10 @@
 // Enemies our player must avoid
+// CS - this is a class definition, which is assigning a function object to var Enemy
+// CS - on the right side of the equation is a constructor function
+// CS - we have only defined it here, defining won't do anything, it only creates the referenced Enemy
+// CS - the properties haven't been encapsulated yet, b/c the statements haven't been executed
+// CS - the constructor function *itself* must be INVOKED
+// CS - only when the function is invoked does the code run, thereby encapsulating the properties via dot notation
 var Enemy = function(x, y) {
     // Variables applied to each of our instances go here, we've provided one for you to get started
     // The image/sprite for our enemies, this uses a helper we've provided to easily load images
@@ -13,13 +19,16 @@ var Enemy = function(x, y) {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
+    //for {}
     // Multiply any movement by the dt parameter
 };
 
 // CS - this is creating location code that will be the same for all instances of Enemy
-Enemy.prototype.move = function(){
-    this.loc++;
-    //this.x++; this is what James wrote - why
+Enemy.prototype.move = function(dt){
+    //console.log(this.x);
+    for (i = 0; this.x <= 400; i++) {
+        this.x++;
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -32,6 +41,7 @@ var Player = function() {
     this.sprite = 'images/char-boy.png';
     this.width = 101;
     this.height = 171;
+    // Remember we want to increment the position, by adding a tiny amount to its current position with each update. And the update function is called every animation frame. So we don't have to do much at all except describe this process of incrementing the x value.
     this.x = 200;
     this.y = 400;
 };
@@ -97,12 +107,12 @@ switch(keyPressed) {
 // Place the player object in a variable called player
 
 var player = new Player();
-var enemy1 = new Enemy(200, 60);
-var enemy2 = new Enemy(200, 145);
+var enemy1 = new Enemy(0, 60);
+var enemy2 = new Enemy(0, 145);
 var enemy3 = new Enemy(200, 230);
 var enemy4 = new Enemy(305, 230);
 var allEnemies = [enemy1, enemy2, enemy3, enemy4];
-
+enemy1.move();
 // This listens for key presses and sends the keys to your Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
