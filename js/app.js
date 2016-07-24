@@ -18,10 +18,10 @@ var Enemy = function(x, y) {
 };
 
 // Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
+// Parameter: dt, a time delta between ticks, multiply any movements by this
+// New array "y_positions" is so that the bugs get random rows during each loop
 Enemy.prototype.update = function(dt) {
     this.x += this.speed;
-    // Multiply any movement by the dt parameter
     if (this.x == 500) {
         this.x = -100;
         var y_positions = ['60', '145', '230'];
