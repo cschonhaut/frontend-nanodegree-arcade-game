@@ -14,26 +14,26 @@ var Enemy = function(x, y) {
     //return obj;
     this.x = x;
     this.y = y;
-    this.speed = Math.floor(Math.random() * 10) + 1;
+    this.speed = Math.floor(Math.random() * 8) + 1;
 };
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks, multiply any movements by this
 // New array "y_positions" is so that the bugs get random rows during each loop
 Enemy.prototype.update = function(dt) {
-    this.x += this.speed;
-    if (this.x == 500) {
-        this.x = -100;
-        var y_positions = ['60', '145', '230'];
-            y_positions.sort(function(){return 0.5 - Math.random();});
-        this.y = y_positions.pop();
-        console.log(y_positions);
-    }
+    this.move();
 };
 
 // CS - this is creating location code that will be the same for all instances of Enemy
 Enemy.prototype.move = function(dt){
-    //console.log(this.x);
+    this.x += this.speed;
+    if (this.x == 500) {
+        this.x = -100;
+        var y_positions = [60, 145, 230];
+            y_positions.sort(function(){return 0.5 - Math.random();});
+        this.y = parseInt(y_positions.pop());
+        console.log(y_positions);
+    }
 };
 
 // Draw the enemy on the screen, required method for game
