@@ -40,6 +40,8 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+// CS - I have no idea what to do on lines 45 & 46
+// Checks for collisions and if one is detected, resetPlayer & resetBug are run
 // Enemy.prototype.checkCollisions = function() {
 //     for
 //         if
@@ -70,6 +72,10 @@ var Player = function() {
 Player.prototype.update = function(dt) {
     if (this.y == -10){
         this.y = 400
+        alert("You win! Click 'OK' to play again.");
+        // ctx.font = "20px Verdana";
+        // ctx.strokeStyle='white';
+        // ctx.strokeText(" You Won! Reload to Continue.", 20, 30);
     }
 };
 
@@ -141,7 +147,7 @@ var allEnemies = [enemy1, enemy2, enemy3, enemy4];
 //enemy1.move();
 //enemy2.move();
 
-// This listens for key presses and sends the keys to your Player.handleInput() method. You don't need to modify this.
+// This listens for key presses and sends the keys to your Player.handleInput() method.
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
         37: 'left',
