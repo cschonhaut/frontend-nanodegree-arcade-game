@@ -9,9 +9,6 @@ var Enemy = function(x, y) {
     // Variables applied to each of our instances go here
     // The image/sprite for our enemies, this uses a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-    //var obj = Object.create(Enemy.prototype);
-    //obj.loc = loc;
-    //return obj;
     this.x = x;
     this.y = y;
     this.speed = Math.floor(Math.random() * 8 ) + 1;
@@ -43,25 +40,18 @@ Enemy.prototype.render = function() {
 
 //Checks for collisions and if one is detected, resetPlayer & resetBug are run
 Enemy.prototype.checkCollisions = function() {
-    var bugBoundingBox = {width: 120, height: 100};
-    var playerBoundingBox = {width: 80, height: 100};
+    var bugBoundingBox = {width: 70, height: 60};
+    var playerBoundingBox = {width: 60, height: 70};
 
     if (this.x < player.x + playerBoundingBox.width &&
         this.x + bugBoundingBox.width > player.x &&
         this.y < player.y + playerBoundingBox.height &&
         bugBoundingBox.height + this.y > player.y) {
             console.log('collision detected!');
-    }
-    // console.log(playerBoundingBox);
-    // console.log(playerBoundingBox.width);
-    // console.log(playerBoundingBox.height);
-    console.log(this.width);
-};
+                 player.resetPlayer();
+                 alert("You lose. Click 'OK' to play again.");
 
-// Resets the bugs off the canvas
-// Called if the bug & the player collide
-Enemy.prototype.resetBug = function() {
-    this.x = -100;
+    }
 };
 
 // Player class with image file path & location for when the game 1st opens
@@ -69,7 +59,6 @@ var Player = function() {
     this.sprite = 'images/char-boy.png';
     this.width = 101;
     this.height = 171;
-    // Remember we want to increment the position, by adding a tiny amount to its current position with each update. And the update function is called every animation frame. So we don't have to do much at all except describe this process of incrementing the x value.
     this.x = 200;
     this.y = 400;
 };
@@ -79,9 +68,6 @@ Player.prototype.update = function(dt) {
     if (this.y == -10){
         this.y = 400
         alert("You win! Click 'OK' to play again.");
-        // ctx.font = "20px Verdana";
-        // ctx.strokeStyle='white';
-        // ctx.strokeText(" You Won! Reload to Continue.", 20, 30);
     }
 };
 
@@ -140,7 +126,7 @@ switch(keyPressed) {
     //console.log (this.x);
 };
 
-// Instantiated objects.
+// Instantiated objects
 // All enemy objects are placed in an array called allEnemies
 // The player object is placed in a variable called player
 
