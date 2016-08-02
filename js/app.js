@@ -21,6 +21,7 @@ var Enemy = function(x, y) {
 // Parameter: dt, a time delta between ticks, multiply any movements by this
 Enemy.prototype.update = function(dt) {
     this.move();
+    this.checkCollisions();
 };
 
 // CS - New array "y_positions" is so that the bugs get placed in random rows after each loop
@@ -31,7 +32,7 @@ Enemy.prototype.move = function(dt){
         var y_positions = [60, 145, 230];
             y_positions.sort(function(){return 0.5 - Math.random();});
         this.y = parseInt(y_positions.pop());
-        console.log(y_positions);
+        //console.log(y_positions);
     }
 };
 
@@ -40,17 +41,22 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// CS - I have no idea what to do on lines 45 & 46
-// Checks for collisions and if one is detected, resetPlayer & resetBug are run
-// Enemy.prototype.checkCollisions = function() {
-//     for
-//         if
-//             this.resetPlayer();
-//             allEnemies[i].resetBug();
-//             break;
-//         }
-//     }
-// };
+//Checks for collisions and if one is detected, resetPlayer & resetBug are run
+Enemy.prototype.checkCollisions = function() {
+    var bugBoundingBox = {width: 120, height: 100};
+    var playerBoundingBox = {width: 80, height: 100};
+
+    if (this.x < player.x + playerBoundingBox.width &&
+        this.x + bugBoundingBox.width > player.x &&
+        this.y < player.y + playerBoundingBox.height &&
+        bugBoundingBox.height + this.y > player.y) {
+            console.log('collision detected!');
+    }
+    // console.log(playerBoundingBox);
+    // console.log(playerBoundingBox.width);
+    // console.log(playerBoundingBox.height);
+    console.log(this.width);
+};
 
 // Resets the bugs off the canvas
 // Called if the bug & the player collide
@@ -92,46 +98,46 @@ Player.prototype.render = function() {
 Player.prototype.handleInput = function(keyPressed) {
 switch(keyPressed) {
     case 'left':
-    console.log('left pressed!');
+    //console.log('left pressed!');
     if(this.x<=0){
-        console.log("boundary reached");
+        //console.log("boundary reached");
         } else {
             this.x += -100;
         }
     break;
 
     case 'up':
-    console.log('up pressed!');
+   // console.log('up pressed!');
     if (this.y<=-10){
-        console.log("boundary reached");
+        //console.log("boundary reached");
         } else {
             this.y += -82;
         }
     break;
 
     case 'right':
-    console.log('right pressed!');
+    //console.log('right pressed!');
     if (this.x>=400){
-        console.log("boundary reached");
+        //console.log("boundary reached");
         } else {
             this.x += 100;
     }
     break;
 
     case 'down':
-    console.log('down pressed!');
+    //console.log('down pressed!');
     if (this.y>=400){
-        console.log("boundary reached");
+        //console.log("boundary reached");
     } else {
         this.y += 82;
     }
     break;
 
     default:
-    console.log('no key pressed!');
+    //console.log('no key pressed!');
     break;
     }
-    console.log (this.x);
+    //console.log (this.x);
 };
 
 // Instantiated objects.
