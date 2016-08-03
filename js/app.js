@@ -27,7 +27,7 @@ Enemy.prototype.move = function(dt){
         var y_positions = [60, 145, 230];
             y_positions.sort(function(){return 0.5 - Math.random();});
         this.y = parseInt(y_positions.pop());
-\    }
+    }
 };
 
 Enemy.prototype.render = function() {
