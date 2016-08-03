@@ -1,10 +1,8 @@
 'use strict';
 // Enemies our player must avoid
-// CS - this is a class definition, which is assigning a function object to var Enemy
-// CS - on the right side of the equation is a constructor function
-// CS - we have only defined it here, defining won't do anything, it only creates the referenced Enemy
-// CS - the constructor function *itself* must be INVOKED
-// CS - only when the function is invoked does the code run, thereby encapsulating the properties via dot notation
+// This is a class definition, which is assigning a function object to var Enemy
+// On the right side of the equation is a constructor function
+// Once the function is invoked the code will run, thereby encapsulating the properties via dot notation
 var Enemy = function(x, y) {
     // Variables applied to each of our instances go here
     // The image/sprite for our enemies, this uses a helper we've provided to easily load images
@@ -21,7 +19,7 @@ Enemy.prototype.update = function(dt) {
     this.checkCollisions();
 };
 
-// CS - New array "y_positions" is so that the bugs get placed in random rows after each loop
+// Array "y_positions" is so that the bugs get placed in random rows after each loop
 Enemy.prototype.move = function(dt){
     this.x += this.speed;
     if (this.x == 500) {
@@ -29,11 +27,9 @@ Enemy.prototype.move = function(dt){
         var y_positions = [60, 145, 230];
             y_positions.sort(function(){return 0.5 - Math.random();});
         this.y = parseInt(y_positions.pop());
-        //console.log(y_positions);
-    }
+\    }
 };
 
-// Enemy is drawn on screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
@@ -63,7 +59,7 @@ var Player = function() {
     this.y = 400;
 };
 
-// CS - If the player reaches the water, reset back to grass
+// If the player reaches the water, reset back to grass
 Player.prototype.update = function(dt) {
     if (this.y == -10){
         this.y = 400
@@ -84,60 +80,45 @@ Player.prototype.render = function() {
 Player.prototype.handleInput = function(keyPressed) {
 switch(keyPressed) {
     case 'left':
-    //console.log('left pressed!');
     if(this.x<=0){
-        //console.log("boundary reached");
         } else {
             this.x += -100;
         }
     break;
 
     case 'up':
-   // console.log('up pressed!');
     if (this.y<=-10){
-        //console.log("boundary reached");
         } else {
             this.y += -82;
         }
     break;
 
     case 'right':
-    //console.log('right pressed!');
     if (this.x>=400){
-        //console.log("boundary reached");
         } else {
             this.x += 100;
     }
     break;
 
     case 'down':
-    //console.log('down pressed!');
     if (this.y>=400){
-        //console.log("boundary reached");
     } else {
         this.y += 82;
     }
     break;
 
     default:
-    //console.log('no key pressed!');
     break;
     }
-    //console.log (this.x);
 };
 
 // Instantiated objects
-// All enemy objects are placed in an array called allEnemies
-// The player object is placed in a variable called player
-
 var player = new Player();
 var enemy1 = new Enemy(0, 60);
 var enemy2 = new Enemy(0, 145);
 var enemy3 = new Enemy(200, 230);
 var enemy4 = new Enemy(0, 230);
 var allEnemies = [enemy1, enemy2, enemy3, enemy4];
-//enemy1.move();
-//enemy2.move();
 
 // This listens for key presses and sends the keys to your Player.handleInput() method.
 document.addEventListener('keyup', function(e) {

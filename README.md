@@ -19,8 +19,10 @@ For detailed instructions on how to get started, check out this [guide](https://
 #How the game is built
 
 ##Enemy Function
-- The enemy function is defined in the beginning of the code
-- This determines the image of the bugs, as well as the location & speed of the bugs
+- This determines the image of the bugs, as well as the location & speed of the bugs. The bugs are objects that the player must avoid
+- This is a class definition, which is assigning a function object to var Enemy. At this point in the code we have only defined enemy, we have not invoked it.
+- On the right side of the equation is a constructor function
+- Once the function is invoked the code will run, thereby encapsulating the properties via dot notation
 
 ###Math.floor
 - Rounds to a whole number
@@ -45,8 +47,11 @@ For detailed instructions on how to get started, check out this [guide](https://
 ###Enemy.prototype.render
 - This is what actually draws each enemy in its new location
 
-###Enemy.prototype.resetBug
-- Resets the bug off the canvas when a collision is detected
+###Enemy.prototype.checkCollisions
+- Credit to MDN (https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection) for base code, customized for my purposes
+- This function sets bounding boxes around the player as well as all of the enemy objects. If those bounding boxes overlap at all, a collision is detected.
+- Once the collision is detected, resetPlayer is called
+- Simultaneously, an alert will appear
 
 ##Player function
 
